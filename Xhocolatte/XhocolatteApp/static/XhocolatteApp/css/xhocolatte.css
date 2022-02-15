@@ -1,0 +1,14 @@
+:root{
+    --navbar:rgb(39,37,33);
+    --footer:rgb(117, 111, 99);
+
+    /* --colorchat:rgb(145,135,102); */
+}
+
+
+footer {
+    background-color: var(--footer);
+    bottom: 0%;
+}
+
+
