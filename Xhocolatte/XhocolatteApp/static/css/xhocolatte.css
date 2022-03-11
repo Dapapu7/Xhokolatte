@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 body{
     background-color: black;
 }
 
 .footer{
     background-color: gray;
+=======
+body{
+    background-color: purple;
+}
+
+.footer{
+    background-color: black;
+>>>>>>> David
 }
