@@ -7,10 +7,14 @@ body{
     background-color: gray;
 =======
 body{
-    background-color: purple;
+    background-color: yellow;
 }
 
 .footer{
+<<<<<<< HEAD
     background-color: black;
+>>>>>>> David
+=======
+    background-color: brown;
 >>>>>>> David
 }
