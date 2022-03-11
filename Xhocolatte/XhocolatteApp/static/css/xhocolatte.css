@@ -3,5 +3,14 @@ body{
 }
 
 .footer{
+<<<<<<< HEAD
     background-color: black;
 }
+=======
+    background-color: gray;
+}
+
+.contendor{
+    background-color: red;
+}
+>>>>>>> Chema
