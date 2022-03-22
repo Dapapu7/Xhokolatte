@@ -73,16 +73,16 @@ footer{
     border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-<<<<<<< Updated upstream
 .footer{
     background-color: gray;
-=======
+}
+
 .copyright{
     font-size: 12px;
     opacity: 0.7;
     font-weight: 400;
     padding: 10px 0;
->>>>>>> Stashed changes
+
 }
 
 .footer-menus{
@@ -196,3 +196,4 @@ footer .website-logo{
         border-bottom: none;
     }
 }
+
