@@ -13,3 +13,8 @@ class PagoAdmin(admin.ModelAdmin):
 
 admin.site.register(Cliente,ClienteAdmin)
 admin.site.register(Pago,PagoAdmin)
+admin.site.register(Empleado)
+admin.site.register(Encargo)
+admin.site.register(Producto)
+admin.site.register(Produccion)
+admin.site.register(ProductoEncargo)
