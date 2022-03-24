@@ -1,5 +1,10 @@
 :root {
-  --footer: rgb(117, 111, 99);
+  --navbar_oscuro:  rgb(102,102,102);
+  --navbar_clarito:rgba(102,102,102, 0.658);
+  --color_transparente:rgba(117, 111, 99, 0);
+  --footer: rgb(102,102,102);
+  /*marrón*/
+  /* --footer: rgb(144,119,97); */
 }
 
 /* --color_0: 255,255,255;
@@ -59,7 +64,8 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: var(--footer);
+  background: linear-gradient(to bottom, var(--navbar_oscuro), var(--navbar_clarito));
+  /* background-color: var(--navbar); */
   color: #fff;
   position: sticky;
   top: 0;
@@ -96,7 +102,7 @@ body {
 }
 
 .dropdown {
-  background-color: var(--footer);
+  background-color: var(--navbar);
   padding: 1em 0;
   position: absolute;
   display: none;
@@ -115,7 +121,7 @@ body {
 }
 
 .dropdown li:hover {
-  background-color: var(--footer);
+  background-color: var(--navbar);
 }
 
 .services:hover .dropdown {
@@ -138,7 +144,7 @@ input[type="checkbox"] {
   .menu {
     display: none;
     position: absolute;
-    background-color: var(--footer);
+    background-color: var(--navbar);
     right: 0;
     left: 0;
     text-align: center;
@@ -146,7 +152,7 @@ input[type="checkbox"] {
   }
   .menu li:hover {
     display: inline-block;
-    background-color: var var(--footer);
+    background-color: var var(--navbar);
     transition: 0.3s ease;
   }
   .menu li + li {
@@ -164,7 +170,7 @@ input[type="checkbox"] {
     transform: translateX(35%);
   }
   .dropdown li:hover {
-    background-color: var(--footer);
+    background-color: var(--navbar);
   }
 }
 
