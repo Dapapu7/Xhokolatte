@@ -49,6 +49,9 @@ body {
   width: 100%;
   position: relative;
 }
+.imagenlogo {
+  width: 65;
+}
 
 /*Navbar*/
 .navbar {
@@ -58,6 +61,8 @@ body {
   padding: 20px;
   background-color: var(--footer);
   color: #fff;
+  position: sticky;
+  top: 0;
 }
 
 .nav-links a {
