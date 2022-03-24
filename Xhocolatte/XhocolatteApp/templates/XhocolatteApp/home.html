@@ -1,11 +1,12 @@
 <html>
 
+<title>
+  {% block title %} Xhocolatte {% endblock %}
+</title>
+
 <head>
 
     {% load static %}
-
-    <!-- Bootstrap -->
-    <link href="{% static 'css/xhocolatte.css' %}" rel="stylesheet">
 
      <!-- Fonts -->
      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
@@ -26,10 +27,11 @@
       <input type="checkbox" id="checkbox_toggle" />
       <label for="checkbox_toggle" class="hamburger">&#9776;</label>
       <div class="menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/">Sobre nosotros</a></li>
+        <li><a href="">Home</a></li>
+        <li><a href="/productos">Productos</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/blog">Blog</a></li>
         <li class="services">
-          <a href="/">Servicios</a>
           <!-- DROPDOWN MENU -->
           <ul class="dropdown">
             <li><a href="/">Dropdown 1 </a></li>
@@ -39,13 +41,12 @@
             <li><a href="/">Dropdown 4</a></li>
           </ul>
         </li>
-        <li><a href="/">Precios</a></li>
-        <li><a href="/">Contacto</a></li>
+        
       </div>
     </ul>
   </nav>
   <!-- Heading -->
-   
+  {% block content %} 
 
 
   
@@ -228,7 +229,9 @@ uismod aliquam id consequat potenti sem lobortis, sodales magnis
  mpor parturient. Integer mi ut magnis iaculis suspendisse commodo nisl laoreet justo, venenatis dui habitant gravida vestibulu
 m tellus praesent leo phasellus, diam penatibus aenean ac fusce varius convallis non.
   </p>
-  v
+  {% endblock %}
+
+
 
   <!-- Footer -->
     <footer>
