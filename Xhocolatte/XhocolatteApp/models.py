@@ -1,3 +1,4 @@
+from distutils.archive_util import make_zipfile
 from django.db import models
 
 # Create your models here.
@@ -57,6 +58,21 @@ class Empleado(models.Model):
 
     def __str__(self):
         return "{0},{1}".format(self.apellido1, self.nombre)
+
+
+class Funcion(models.Model):
+    id = models.AutoField(primary_key = True)
+    cargo = models.CharField('Cargo', max_length = 100, blank = False, null = False)
+    empleado = models.ForeignKey(Empleado, on_delete = models.CASCADE)
+    estado = models.BooleanField('Cargo Activo/No Activo', default = True)
+    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+
+    class Meta:
+        verbose_name = 'Funcion'
+        verbose_name_plural = 'Funciones'
+
+    def __str__(self):
+        return self.cargo
 
 
 class Encargo(models.Model):
@@ -127,3 +143,21 @@ class ProductoEncargo(models.Model):
 
     def __str__(self):
         return self.id
+
+
+class Receta(models.Model):
+    id = models.AutoField(primary_key = True)
+    nombre = models.CharField('Nombre', max_length = 45, blank = False, null = False)
+    descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
+    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
+    estado = models.BooleanField('Receta Activo/No Activo', default = True)
+    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+
+    class Meta:
+        verbose_name = 'Receta'
+        verbose_name_plural = 'Recetas'
+
+    def __str__(self):
+        return self.nombre
+
+
