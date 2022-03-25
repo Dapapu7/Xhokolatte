@@ -1,12 +1,13 @@
 <html>
-
-<title>
-  {% block title %} Xhocolatte {% endblock %}
-</title>
-
+  {% load static %}
+  
 <head>
-
-    {% load static %}
+<title>
+  {% block title %}
+    Xhocolatte 
+  {% endblock %}
+</title>
+<link rel="shortcut icon" href="{% static 'img/logosinfondo.png' %}" type="image/x-icon">
 
      <!-- Fonts -->
      <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
@@ -29,8 +30,8 @@
       <div class="menu">
         <li><a href="/">Home</a></li>
         <li><a href="/productos">Productos</a></li>
-        <li><a href="/contacto">Contacto</a></li>
         <li><a href="/blog">Blog</a></li>
+        <li><a href="/contacto">Contacto</a></li>
         <li class="services">
           <!-- DROPDOWN MENU -->
           <ul class="dropdown">
