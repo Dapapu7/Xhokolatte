@@ -54,6 +54,10 @@ body {
   width: 100%;
   position: relative;
 }
+.fondo {
+  background-image: url('/static/img/logofinal.jpg');
+  width: 50;
+}
 
 .imagenlogo {
   width: 65;
