@@ -1,4 +1,5 @@
 from distutils.archive_util import make_zipfile
+from email.headerregistry import UniqueAddressHeader
 from django.db import models
 
 # Create your models here.
@@ -161,3 +162,64 @@ class Receta(models.Model):
         return self.nombre
 
 
+class Inventario(models.Model):
+    id = models.AutoField(primary_key = True)
+    descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
+    unidad = models.CharField('Unidad', max_length = 45, blank = False, null = False)
+    precio = models.FloatField('Precio', blank = False, null = False)
+    cantidad = models.IntegerField('Cantidad', blank = False, null = False)
+    receta = models.ManyToManyField(Receta)
+    estado = models.BooleanField('Receta Activo/No Activo', default = True)
+    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+
+    class Meta:
+        verbose_name = 'Inventario'
+        verbose_name_plural = 'Inventarios'
+
+    def __str__(self):
+        return self.descripcion
+
+
+class InventarioReceta(models.Model):
+    id = models.AutoField(primary_key = True)
+    ingrediente = models.CharField('Ingredientes', max_length = 45, blank = False, null = False)
+    cantidad = models.CharField('Cantidad', max_length = 45, blank = False, null = False)
+    unidad_medida = models.CharField('Unidad de medida', max_length = 45, blank = False, null = False)
+    receta_id = models.ForeignKey(Receta, on_delete = models.CASCADE)
+    inventario_id = models.ForeignKey(Inventario, on_delete = models.CASCADE)
+
+    class Meta:
+        verbose_name = 'listaIngrediente'
+        verbose_name_plural = 'listaIngredientes'
+
+    def __str__(self):
+        return self.ingrediente
+
+    
+class Proveedor(models.Model):
+    id = models.AutoField(primary_key = True)
+    nombre = models.CharField('Nombre', max_length = 100, blank = False, null = False)
+    telefono = models.CharField('Teléfono', max_length = 9, blank = False, null = False)
+    inventario = models.ManyToManyField(Inventario)
+    estado = models.BooleanField('Receta Activo/No Activo', default = True)
+    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+
+    class Meta:
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'
+
+    def __str__(self):
+        return "{0},{1}".format(self.nombre, self.telefono)
+
+
+class ProveedoresInventario(models.Model):
+    id = models.AutoField(primary_key = True)
+    inventario_id = models.ForeignKey(Inventario, on_delete = models.CASCADE)
+    proveedor_id = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
+
+    class Meta:
+        verbose_name = 'proveedorInventario'
+        verbose_name_plural = 'proveedoresInventario'
+
+    def __str__(self):
+        return "{0},{1},{2}".format(self.id, self.inventario_id, self.proveedor_id)
