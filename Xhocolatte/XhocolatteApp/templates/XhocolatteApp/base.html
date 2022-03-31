@@ -54,7 +54,12 @@
           <li><a href="/productos">Productos</a></li>
           <li><a href="/blog">Blog</a></li>
           <li><a href="/contacto">Contacto</a></li>
-          <li><a href="/login">Login</a></li>
+          {% if user.is_authenticated %}
+            <li>{{user.username}} | </li>
+            <li><a href="/logout">Logout</a></li>
+          {% else %}
+            <li><a href="/login">Login</a></li>
+          {% endif %}
         </div>
       </ul>
     </nav>
