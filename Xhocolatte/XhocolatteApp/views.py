@@ -15,6 +15,9 @@ def  contacto(request):
 def blog(request):
     return render(request, 'XhocolatteApp/blog.html')
 
+# def sign_up(request):
+
+
 
     
 

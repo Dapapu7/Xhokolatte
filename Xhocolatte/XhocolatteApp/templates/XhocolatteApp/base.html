@@ -1,0 +1,122 @@
+<html>
+  {% load static %}
+
+  <head>
+    <title>{% block title %} Xhocolatte {% endblock %}</title>
+    <link
+      rel="shortcut icon"
+      href="{% static 'img/logosinfondo.png' %}"
+      type="image/x-icon"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+
+    <!-- Styles -->
+    <link href="{% static 'css/xhocolatte.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <a href="/"
+          ><img
+            class="imagenlogo"
+            src="{% static 'img/logosinfondo.png' %}"
+            alt="LogoGuapo"
+        /></a>
+      </div>
+      <ul class="nav-links">
+        <input type="checkbox" id="checkbox_toggle" />
+        <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+        <div class="menu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/productos">Productos</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/contacto">Contacto</a></li>
+          <li><a href="/login">Login</a></li>
+          <li class="services">
+            <!-- DROPDOWN MENU -->
+            <ul class="dropdown">
+              <li><a href="/">Dropdown 1 </a></li>
+              <li><a href="/">Dropdown 2</a></li>
+              <li><a href="/">Dropdown 2</a></li>
+              <li><a href="/">Dropdown 3</a></li>
+              <li><a href="/">Dropdown 4</a></li>
+            </ul>
+          </li>
+        </div>
+      </ul>
+    </nav>
+    <!-- Heading -->
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="contenedor-footer">
+        <div class="contenedor-footer-contenido">
+          <h3 class="website-logo">Xhocolatte</h3>
+          <span class="footer-info">111-111-111</span>
+          <span class="footer-info">xhocolatte@gmail.com</span>
+        </div>
+
+        <div class="footer-menus">
+          <div class="contenedor-footer-contenido">
+            <span class="titulo-menu">Menú</span>
+            <a href="" class="menu-item-footer">Home</a>
+            <a href="" class="menu-item-footer">Home</a>
+            <a href="" class="menu-item-footer">Home</a>
+            <a href="" class="menu-item-footer">Home</a>
+          </div>
+
+          <div class="contenedor-footer-contenido">
+            <span class="titulo-menu">Legal</span>
+            <a href="" class="menu-item-footer">Política de Privacidad</a>
+            <a href="" class="menu-item-footer">Cookies</a>
+            <a href="" class="menu-item-footer">Términos y Condiciones</a>
+          </div>
+        </div>
+
+        <div class="contenedor-footer-contenido">
+          <span class="titulo-menu">Follow Us</span>
+
+          <div class="contenedor-social">
+            <a href="" class="links-sociales"></a>
+            <a href="" class="links-sociales"></a>
+            <a href="" class="links-sociales"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contenedor-copyright">
+        <span class="copyright">&copy; 2022, Xhocolatte</span>
+      </div>
+    </footer>
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous">
+    </script>
+  </body>
+</html>

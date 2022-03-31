@@ -1,0 +1,13 @@
+{% extends "XhocolatteApp/base.html" %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}{{ form | crispy }}
+        <p>¿Tienes cuenta? ¡Login <a href="/login">Aquí</a>!</p>
+        <button type="submit" class="btn btn-success">Registrar</button>
+    </form>
+{% endblock %}
