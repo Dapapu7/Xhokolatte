@@ -5,7 +5,8 @@
 {% block title %} Xhocolatte {% endblock %}
 
 {% block content %}
-<header>
+<body class="body-html">
+<header class="header-html">
     <section class="textos-header">
         <h1>Boutique Pastelería Xhocolatte</h1>
         <h2>Las mejores calidades, los mejores obradores.</h2>
@@ -17,8 +18,8 @@
 </header>
 
 <main>
-    <section class="contenedor sobre-nosotros">
-        <h2 class="titulo">Nuestros Productos</h2>
+    <section class="contenedor-html sobre-nosotros">
+        <h2 class="titulo-html">Nuestros Productos</h2>
             <div class="contenedor-sobre-nosotros">
                 <img src="{% static 'img/fotos-fondo/palmerita.jpg' %}" alt="" class="img-sobre-nosotros">
                 <div class="contenido-textos">
@@ -33,9 +34,9 @@
                 </div>
             </div>
     </section>
-    <section class="galeria">
-        <div class="contenedor">
-            <h2 class="titulo">Galería</h2>
+    <section class="galeria-html">
+        <div class="contenedor-html">
+            <h2 class="titulo-html">Galería</h2>
             <div class="imgs-galeria">
                 <div class="img-galeria">
                     <img src="{% static 'img/fotos-pasteleria/do-caramelo.jpg' %}" alt="">
@@ -80,7 +81,7 @@
                     </div>
                 </div>
                 <div class="img-galeria">
-                    <img src="{% static 'img/fotos-pasteleria/do-chocolate.jpg' %}" alt="">
+                    <img src="{% static 'img/fotos-pasteleria/donut-chocolate.jpg' %}" alt="">
                     <div class="hover-galeria">
                         <img src="{% static 'img/logosinfondo.png' %}" alt="">
                         <p>Nuestro trabajo</p>
@@ -97,7 +98,7 @@
         </div>
     </section>
     <section class="contenedor-clientes">
-        <h2 class="titulo">Nuestros clientes</h2>
+        <h2 class="titulo-html">Nuestros clientes</h2>
         <div class="cards">
 
             <div class="card">
@@ -120,8 +121,8 @@
     </section>
 
     <section class="sobre-nosotros">
-        <div class="contenedor">
-            <h2 class="titulo">Nuestros Servicios</h2>
+        <div class="contenedor-html">
+            <h2 class="titulo-html">Nuestros Servicios</h2>
             <div class="servicio-cont">
                 <div class="servicio-indiv">
                     <img src="{% static 'img/fotos-pasteleria/do-caramelo.jpg' %}" alt="">
@@ -136,7 +137,7 @@
                     </p>
                 </div>
                 <div class="servicio-indiv">
-                    <img src="{% static 'img/fotos-pasteleria/do-chocolate.jpg' %}" alt="">
+                    <img src="{% static 'img/fotos-pasteleria/donut-chocolate.jpg' %}" alt="">
                     <h3>Nombre</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quia, dolorum libero enim magni laborum tempore! Fuga officiis voluptatum aliquam eum pariatur perferendis ipsa facere?
                     </p>
@@ -145,6 +146,6 @@
         </div>
     </section>
 </main>
-
+</body>
 
 {% endblock %}
