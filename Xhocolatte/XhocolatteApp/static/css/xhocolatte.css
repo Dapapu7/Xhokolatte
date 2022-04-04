@@ -165,9 +165,9 @@ body {
 .header-html{
   width: 100%;
   height: 600px;
-  background: #a7672cc6;
-  background: -webkit-linear-gradient(to right,  #f807577a, #bc4e9d87), url("{% static 'img/fotos-fondo/palmerita.jpg' %}");
-  background: linear-gradient(to right,  #f807577a, #bc4e9d87), url("{% static 'img/fotos-fondo/palmerita.jpg' %}");
+  background: #bc4e9c;
+  background: -webkit-linear-gradient(to right,  #f807577a, #bc4e9d87), url('/static/img/fotos-fondo/palmerita.jpg');
+  background: linear-gradient(to right,  #f807577a, #bc4e9d87), url('/static/img/fotos-fondo/palmerita.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -237,7 +237,7 @@ body {
 }
 
 /* Galeria */
-.galeria-html{
+.galeria-html {
   background: #f2f2f2;
 }
 
