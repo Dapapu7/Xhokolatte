@@ -146,6 +146,7 @@ body {
 
 .body-html{
   font-family: 'open sans';
+  
 }
 
 .contenedor-html{
@@ -157,7 +158,7 @@ body {
 }
 
 .titulo-html {
-  color: #642a73;
+  color: #875f27dc;
   font-size: 30px;
   text-align: center;
   margin-bottom: 60px;
@@ -166,9 +167,9 @@ body {
 .header-html{
   width: 100%;
   height: 600px;
-  background: #bc4e9c;
-  background: -webkit-linear-gradient(to right,  #f807577a, #bc4e9d87), url('/static/img/fotos-fondo/palmerita.jpg');
-  background: linear-gradient(to right,  #f807577a, #bc4e9d87), url('/static/img/fotos-fondo/palmerita.jpg');
+  background: #a26d16;
+  background: -webkit-linear-gradient(to right,  #8b48007a, #4f2e0187), url('/static/img/fotos-fondo/palmerita.jpg');
+  background: linear-gradient(to right,  #8b48007a, #4f2e0187), url('/static/img/fotos-fondo/palmerita.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -201,6 +202,9 @@ body {
 }
 
 /* Sobre nosotros */
+main .sobre-nosotros{
+  padding: 30px 0 60px 0;
+}
 .contenedor-sobre-nosotros{
   display: flex;
   justify-content: space-evenly;
@@ -219,7 +223,7 @@ body {
 }
 
 .contenido-textos h3 span{
-  background: #4d0686;
+  background: #644204d9;
   color: #fff;
   border-radius: 50%;
   display: inline-block;
@@ -271,7 +275,7 @@ body {
   height: 100%;
   top: 0;
   transform: scale(0);
-  background: hsla(273,91%,27%, 0.7);
+  background: rgba(103, 63, 1, 0.7);
   transition: transform .5s;
   display: flex;
   justify-content: center;
@@ -290,6 +294,74 @@ body {
 .img-galeria:hover .hover-galeria{
   transform: scale(1);
   
+}
+
+/* Clients */
+.cards{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.cards .card{
+  background: rgb(93, 51, 3);
+  display: flex;
+  width: 46%;
+  height: 200px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+}
+
+.cards .card img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  display: block;
+}
+
+.cards .card > .texto-card{
+  width: 60%;
+  color: #fff; /*#875f27dc*/
+   
+}
+
+.cards .card > .texto-card p{
+  font-weight: 300;
+  padding-top: 5px;
+}
+
+
+/* Nosotros */
+.sobre-nosotros{
+  background: #f2f2f2;
+  padding-bottom: 30px;
+}
+
+.servicio-cont{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.servicio-indiv{
+  width: 28%;
+  text-align: center;
+}
+
+.servicio-indiv img{
+  width: 90%;
+}
+
+.servicio-indiv h3 {
+  margin: 10px 0 ;
+}
+
+.servicio-indiv p {
+  font-weight: 300;
+  text-align: justify;
 }
 
 
@@ -486,5 +558,119 @@ footer .website-logo {
     width: 45%;
     align-items: flex-start;
     border-bottom: none;
+  }
+}
+
+
+
+
+
+@media screen and (max-width:900px) {
+ 
+    header{
+    background-position: center;
+  } 
+
+  .contenedor-sobre-nosotros{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sobre-nosotros .contenido-textos{
+    width: 90%;
+  }
+
+  .img-sobre-nosotros{
+    width: 90%;
+  }
+
+  /* Galeria */
+  .img-galeria {
+    width: 44%;
+  }
+  
+  /* Clientes */
+  .cards{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .cards .card{
+    width: 90%;
+  }
+
+  .cards .card:first-child{
+    margin-bottom: 30px;
+  }
+
+  /* Servicios */
+  .servicio-cont{
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .servicio-indiv{
+    width: 100%;
+    text-align: center;
+  }
+
+  .servicio-indiv:nth-child(1), .servicio-indiv:nth-child(2){
+    margin-bottom: 60px;
+  }
+
+  .servicio-indiv img{
+    width: 90%;
+  }
+
+}
+
+@media screen and (max-width:500px) {
+  nav{
+    text-align: center;
+    padding: 30px 0 0 0;
+  }
+
+  nav > a{
+    margin-right: 5px;
+  }
+
+  .textos-header h1{
+    font-size: 35px;
+  }
+
+  .textos-header h2{
+    font-size: 20px;
+  }
+
+  /* Sobre nosotros */
+  .img-sobre-nosotros{
+    margin-bottom: 60px;
+    width: 99%;
+  }
+
+  .sobre-nosotros .contenido-textos{
+    width: 95%;
+
+  }
+
+
+  /* Galeria */
+  .img-galeria{
+    width: 95%;
+  }
+
+  /* Clientes */
+  .cards .card{
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards .card img{
+    width: 90%;
+    height: 90px;
   }
 }
