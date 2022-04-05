@@ -5,9 +5,14 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method="post">
-        {% csrf_token %}{{ form | crispy }}
-        <p>¿Tienes cuenta? ¡Login <a href="/login">Aquí</a>!</p>
-        <button type="submit" class="btn btn-success">Registrar</button>
-    </form>
+
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3 mt-5">
+            <form method="post">
+                {% csrf_token %}{{ form | crispy }}
+                <p>¿Tienes cuenta? ¡Login <a href="/login">Aquí</a>!</p>
+                <button type="submit" class="btn btn-success mb-5">Registrar</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
