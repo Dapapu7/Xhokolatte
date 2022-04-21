@@ -223,3 +223,4 @@ class ProveedoresInventario(models.Model):
 
     def __str__(self):
         return "{0},{1},{2}".format(self.id, self.inventario_id, self.proveedor_id)
+ 
