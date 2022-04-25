@@ -10,6 +10,9 @@ from django.core.mail import send_mail
 def  home(request):
     return render(request, 'XhocolatteApp/home.html')
 
+def  privacidad(request):
+    return render(request, 'XhocolatteApp/politicasPrivacidad.html')
+
 def  productos(request):
     return render(request, 'XhocolatteApp/productos.html')
 
