@@ -1,5 +1,3 @@
-from distutils.archive_util import make_zipfile
-from email.headerregistry import UniqueAddressHeader
 from django.db import models
 
 # Create your models here.
@@ -97,9 +95,9 @@ class Encargo(models.Model):
 class Producto(models.Model):
     id = models.AutoField(primary_key = True)
     descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
+    imagen = models.ImageField(null = True, blank = True, upload_to = 'productos')
     existencias = models.IntegerField('Existencias', blank = False, null = False)
     precio = models.FloatField('Precio', blank = False, null = False)
-    encargo = models.ManyToManyField(Encargo)
     estado = models.BooleanField('Producto Activo/No Activo', default = True)
     fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
 
