@@ -16,11 +16,15 @@
             {% for key, value in request.session.carrito.items %}
                 <tr>
                     <td>{{ value.nombre }}</td>
-                    <td>{{ value.precio }}</td>
-                    <td>{{ value.acumulado }}</td>
+                    <td>{{ value.acumulado }}€</td>
+                    <td>{{ value.cantidad }}</td>
 
-                    <a href="{% url 'Add' value.producto_id %}" class="badge btn-dark badge-dark">+</a>
-                    <a href="{% url 'Sub' value.producto_id %}" class="badge btn-dark badge-dark">-</a>
+                    {% if value.cantidad > producto.existencias %}
+                        <div class="alert alert-danger text-center">No hay tantas existencias</div>
+                    {% endif %}
+
+                    <td><a href="{% url 'Add' value.producto_id %}" class="badge btn-dark badge-dark">+</a></td>
+                    <td><a href="{% url 'Sub' value.producto_id %}" class="badge btn-dark badge-dark">-</a></td>
                 </tr>
             {% endfor %}
             

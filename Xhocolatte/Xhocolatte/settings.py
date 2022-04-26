@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'XhocolatteApp',
     'crispy_forms',
     'crispy_bootstrap5',
+    'froala_editor',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

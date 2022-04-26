@@ -6,7 +6,7 @@ class Carrito:
 
         if not carrito:
             self.session["carrito"] = {}
-            self.carrito = self.seesion.get("carrito")
+            self.carrito = self.session["carrito"]
         else:
             self.carrito = carrito
 
@@ -16,7 +16,7 @@ class Carrito:
         if id not in self.carrito.keys():
             self.carrito[id] = {
                 "producto_id": producto.id,
-                "nombre": producto.nombre,
+                "nombre": producto.descripcion,
                 "acumulado": producto.precio,
                 "cantidad": 1,
             }
@@ -44,7 +44,7 @@ class Carrito:
             self.carrito[id]["cantidad"] -= 1
             self.carrito[id]["acumulado"] -= producto.precio
 
-            if self.carrito[id]["catidad"] <= 0: self.eliminar(producto)
+            if self.carrito[id]["cantidad"] <= 0: self.eliminar(producto)
             self.guardar_carrito()
 
     def limpiar(self):
