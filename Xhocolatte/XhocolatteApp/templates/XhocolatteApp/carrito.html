@@ -23,8 +23,8 @@
                         <div class="alert alert-danger text-center">No hay tantas existencias</div>
                     {% endif %}
 
-                    <td><a href="{% url 'Add' value.producto_id %}" class="badge btn-dark badge-dark">+</a></td>
-                    <td><a href="{% url 'Sub' value.producto_id %}" class="badge btn-dark badge-dark">-</a></td>
+                    <td><a href="{% url 'Add' value.producto_id %}" class="badge btn-dark badge-dark" style="text-decoration: none" >+</a></td>
+                    <td><a href="{% url 'Sub' value.producto_id %}" class="badge btn-dark badge-dark" style="text-decoration: none">-</a></td>
                 </tr>
             {% endfor %}
             
@@ -46,5 +46,5 @@
 
 <div class="row text-center">
     <div class="col-6"><a href="{% url 'CLS' %}" class="btn btn-danger">Limpiar</a></div>
-    <div class="col-6"><a href="#" class="btn btn-success">Guardar</a></div>
+    <div class="col-6"><a href="#" class="btn btn-success">Comprar</a></div>
 </div>
