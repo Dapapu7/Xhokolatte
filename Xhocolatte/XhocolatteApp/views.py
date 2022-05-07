@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout, authenticate
 from XhocolatteApp.forms import RegisterForm
 from django.conf import settings
@@ -18,6 +18,9 @@ def  productos(request):
     productos = Producto.objects.all()
     return render(request, 'XhocolatteApp/productos.html', {'productos': productos})
 
+def detalle_productos(request, slug):
+    producto = get_object_or_404(Producto, slug=slug, en_stock=True)
+    return render(request, 'XhocolatteApp/detail.html', {'producto': producto})
 
 def  contacto(request):
     return render(request, 'XhocolatteApp/contacto.html')

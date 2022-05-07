@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-p23#7a7i+)7$rdwb0yq4y4efz3s-(*%l_svu$lpij!y1f3$ik=
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yourdomain.com']
 
 
 INSTALLED_APPS = [
@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'XhocolatteApp',
+    'basket',
     'crispy_forms',
     'crispy_bootstrap5',
     'froala_editor',
@@ -49,6 +50,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'basket.context_processors.basket',
             ],
         },
     },

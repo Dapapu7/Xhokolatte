@@ -1,5 +1,10 @@
 from django.db import models
+from django.urls import reverse
 
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(estado=True)
 # Create your models here.
 class Cliente(models.Model):
     id = models.AutoField(primary_key = True)
@@ -94,16 +99,26 @@ class Encargo(models.Model):
 
 class Producto(models.Model):
     id = models.AutoField(primary_key = True)
-    descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
+    nombre = models.CharField('Nombre', max_length = 255, blank = False, null = False)
+    descripcion = models.TextField('Descripción', blank=False, null = False, default='Que rico esta esto')
+    alergenos = models.TextField('Alergenos', blank=False, null=False, default='Ninguno')
     imagen = models.ImageField(null = True, blank = True, upload_to = 'productos')
     existencias = models.IntegerField('Existencias', blank = False, null = False)
     precio = models.FloatField('Precio', blank = False, null = False)
+    slug = models.SlugField(max_length=255)
+    en_stock = models.BooleanField(default=True)
     estado = models.BooleanField('Producto Activo/No Activo', default = True)
     fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    objects = models.Manager()
+    products = ProductManager()
 
     class Meta:
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
+
+
+    def get_absolute_url(self):
+        return reverse('detalle_productos', args=[self.slug])
 
     def __str__(self):
         return self.descripcion
