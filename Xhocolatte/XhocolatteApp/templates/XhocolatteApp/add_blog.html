@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    <form action="" method="post" class="mt-5 pt-5 mb-5 pb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="">Introduzca un Título a su blog</label>
+                <input type="text" class="form-control" placeholder="Introduzca el título" name="title">
+            </div>
+
+            <div class="col-md-12">
+                {{forms.media}}
+                {{forms.as_p}}
+            </div>
+            <div class="col-md-12">
+                <input type="file" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">Crear Blog</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
