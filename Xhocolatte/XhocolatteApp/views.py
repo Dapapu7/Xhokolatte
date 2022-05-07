@@ -36,6 +36,24 @@ def contactar(request):
 def blog(request):
     return render(request, 'XhocolatteApp/blog.html')
 
+def add_blog(request):
+    context = {'form' : BlogForm}
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        image = request.FILE['image']
+        title = request.POST.get('tile')
+        user = request.user
+
+        if form.is_valid():
+            content = form.cleaned_data['content']
+
+        blog_obj = BlogModel.objets.create(
+            user = user , title = title,
+            content = content , image = image
+        )
+        print(blog_obj)
+        return redirect('/add_blog/')
+
 def sign_up(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
