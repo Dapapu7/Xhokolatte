@@ -8,10 +8,6 @@ urlpatterns = [
     path('', views.home, name = "Home"),
 
     path('productos/', views.productos, name = "Productos"),
-    path('agregarProducto/<int:producto_id>/', views.agregar_producto, name = "Add"),
-    path('eliminarProdcuto/<int:producto_id>/', views.eliminar_producto, name = "Del"),
-    path('restarProdcuto/<int:producto_id>/', views.restar_producto, name = "Sub"),
-    path('limpiarCarrito/', views.limpiar_carrito, name = "CLS"),
      
     path('contacto/', views.contacto, name = "Contacto"),
     path('blog/', views.blog, name = "Blog"),
