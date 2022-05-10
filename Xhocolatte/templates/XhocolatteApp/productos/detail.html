@@ -1,0 +1,66 @@
+{% extends "../base.html" %}
+
+{% block title %} {{ producto.nombre }} {% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row g-3 mb-5 mt-5">
+            <div class="col-md-5  col-lg-5 order-md-first bg-light">
+                <img src="{{ producto.imagen.url }}" alt="Imagen Responsive" class="img-fluid mx-auto d-block">
+            </div>
+            <div class="col-md7 col-lg-7 ps-md-3 ps-lg-5">
+                <h1 class="mb-3 h4">{{ producto.nombre }}</h1>
+                <p>{{ producto.alergenos|slice:":355" }}...</p>
+                <div class="border">
+                    <div class="col border-bottom">
+                        <div class="row p-3">
+                            <div class="col-6">Precio: </div>
+                            <div class="col-6 text-end"><span class="h4 fw-bold">{{ producto.precio }}€</span></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row p-3">
+                            <div class="col-6">
+                                <label for="select" class="me-2">Cantidad</label>
+                                <select id="select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </div>
+                            <div class="col-6 text-end">
+                                <button type="button" id="add-button" value="{{ producto.id }}" class="btn btn-success btn-sm">Añadir al Carrito</button>
+                                <button type="button" id="add-button" value="{{ producto.id }}" class="btn btn-secondary btn-sm">Añadir a Favoritos</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        $(document).on('click', '#add-button', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "basket:basket_add" %}',
+                data: {
+                    productid: $('#add-button').val(),
+                    productqty: $('#select option:selected').text(),
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                    action: 'post'
+                },
+                success: function(json){
+                    document.getElementById('basket-qty').innerHTML = json.qty;
+                },
+                error: function(xhr, errmsg, err){}
+            });
+        });
+
+    </script>
+
+{% endblock %}

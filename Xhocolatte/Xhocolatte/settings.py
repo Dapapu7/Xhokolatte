@@ -20,9 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'XhocolatteApp',
     'basket',
+    'account',
+
     'crispy_forms',
     'crispy_bootstrap5',
     'froala_editor',
+    'django_countries',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
@@ -111,9 +114,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_USE_TLS = True
-# EMAIL_POST = 587
-# EMAIL_HOST_USER = models.Cliente.email
-# EMAIL_HOST_PASSWORD = 
+AUTH_USER_MODEL = 'account.UserBase'
+LOGIN_REDIRECT_URL = '/account/dashboard'
+LOGOUT_REDIRECT_URL = '/account/login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

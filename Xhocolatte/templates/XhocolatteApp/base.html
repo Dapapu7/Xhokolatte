@@ -18,57 +18,101 @@
     <link href="{% static 'css/base.css' %}" rel="stylesheet" />
     <link href="{% static 'css/home.css' %}" rel="stylesheet" />
     <link href="{% static 'css/productos.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/basket.css' %}" rel="stylesheet" />
   </head>
 
   <body>
-    <!-- Navbar -->
-    <!-- Navbar -->
-    <nav class="navbar">
-      <div class="logo">
-        <a href="/"
-          ><img
-            class="imagenlogo"
-            src="{% static 'img/logosinfondo.png' %}"
-            alt="LogoGuapo"
-        /></a>
-      </div>
-      <ul class="nav-links">
+<!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
+        <div class="container-fluid">
+            <div class="d-flex w-100 navbar">
+                <a class="navbar-brand d-flex-inline" href="/">
+                  <img src="{% static 'img/logosinfondo.png' %}" alt="logo" width="70" height="70" class="rounded-circle">
+                </a>
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">      
+                  <li class="nav-item">
+                    <a class="nav-link d-none d-md-block fw500" style="color:white" href="/productos" role="button">
+                        Productos 
+                    </a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link d-none d-md-block fw500" style="color:white" href="/blog" role="button">
+                        Blog 
+                    </a>
+                  </li> 
+                  <li class="nav-item">
+                    <a class="nav-link d-none d-md-block fw500" style="color:white" href="/contacto" role="button">
+                        Contacto 
+                    </a>
+                  </li>                   
+                </ul>
 
-        <div class="menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/productos">Productos</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contacto">Contacto</a></li>
-          {% if user.is_authenticated %}
-            <li>{{user.username}} | </li>
-            <li><a href="/logout">Logout</a></li>
-          {% else %}
-            <li><a href="/login">Login</a></li>
-          {% endif %}
-          <li>
-            <a type="button" role="button" href="{% url 'basket:resumen_carrito' %}" class="btn btn-outline-secondary">
+                {% if user.is_authenticated %}
+                <a type="button" role="button" href="{% url 'account:logout' %}"
+                    class="btn btn-outline-secondary border-0 basket-btn">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                            class="bi bi-door-closed" viewBox="0 0 16 16">
+                            <path
+                                d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
+                            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
+                        </svg>
+                    </div>
+                    <span class="fs15 fw500" style="color:white">Logout</span>
+                </a>
+                {% else %}
+                <a type="button" role="button" href="{% url 'account:dashboard' %}"
+                    class="btn btn-outline-secondary border-0 basket-btn">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                            class="bi bi-door-closed" viewBox="0 0 16 16">
+                            <path
+                                d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z" />
+                            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z" />
+                        </svg>
+                    </div>
+                    <span class="fs15 fw500" style="color:white">Login</span>
+                </a>
+                {% endif %}
 
-              {% with total_qty=basket|length %}
 
-                <div id="basket-qty" class="d-inline-flex">
-                  {% if total_qty > 0 %}
-                    {{ total_qty }}
-                  {% else %}
-                    0
-                  {% endif %}
-                </div>
-                
-              {% endwith %}
+                <a type="button" role="button" href="{% url 'account:dashboard' %}"
+                        class="btn btn-outline-secondary border-0 basket-btn">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                                class="bi bi-person" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                            </svg>
+                        </div>
+                        <span class="fs15 fw500" style="color: white;">Account</span>
+                    </a>
 
-              <div id="basket-qty" class="d-inline-flex"></div>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-cart" viewBox="0 0 16 16">
-                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-              </svg>
-            </a>
-          </li>
+                <a type="button" role="button" href="{% url 'basket:resumen_carrito' %}"
+                    class="btn btn-outline-secondary border-0 basket-btn">
+
+                    {% with total_qty=basket|length %}
+                    <div id="basket-qty" class="basket-qty" style="color: white;">
+                        {% if total_qty > 0 %}
+                          {{ total_qty }}
+                        {% else %}
+                          0
+                        {% endif %}
+                    </div>
+                    {% endwith %}
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+                            class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                    </div>
+                    <span class="fs15 fw500" style="color:white">Carrito</span>
+                </a>
+            </div>
         </div>
-      </ul>
     </nav>
+    
     <!-- Heading -->
     {% block content %} {% endblock %}
 

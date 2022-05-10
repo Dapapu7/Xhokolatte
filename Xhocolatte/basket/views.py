@@ -6,7 +6,7 @@ from XhocolatteApp.models import Producto
 
 def resumen_carrito(request):
     basket = Basket(request)
-    return render(request, 'XhocolatteApp/carrito/resumen.html', {'basket': basket})
+    return render(request, 'carrito/resumen.html', {'basket': basket})
 
 def basket_add(request):
     basket = Basket(request)

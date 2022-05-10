@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, logout, authenticate
-from XhocolatteApp.forms import RegisterForm
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -16,11 +15,11 @@ def  privacidad(request):
 
 def  productos(request):
     productos = Producto.objects.all()
-    return render(request, 'XhocolatteApp/productos.html', {'productos': productos})
+    return render(request, 'XhocolatteApp/productos/productos.html', {'productos': productos})
 
 def detalle_productos(request, slug):
     producto = get_object_or_404(Producto, slug=slug, en_stock=True)
-    return render(request, 'XhocolatteApp/detail.html', {'producto': producto})
+    return render(request, 'XhocolatteApp/productos/detail.html', {'producto': producto})
 
 def  contacto(request):
     return render(request, 'XhocolatteApp/contacto.html')
@@ -56,18 +55,6 @@ def add_blog(request):
         )
         print(blog_obj)
         return redirect('/add_blog/')
-
-def sign_up(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/')
-    else:
-        form = RegisterForm()
-    
-    return render(request, 'registration/sign_up.html', {"form":form})
 
     
 

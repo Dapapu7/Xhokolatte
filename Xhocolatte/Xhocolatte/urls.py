@@ -6,5 +6,6 @@ urlpatterns = [
 
     path('', include('XhocolatteApp.urls')),
     path('carrito/', include('basket.urls', namespace='basket')),
+    path('accounts/', include('account.urls', namespace='account')),
     path('', include('django.contrib.auth.urls')),
 ]
