@@ -5,14 +5,14 @@
 
 {% block sub_content %}
 
-<div class="col-12">
+<div class="col-12" style="padding-top: 100px;">
     <h1 class="h2">Pedido de Usuario</h1>
   </div>
   <div class="col-12 d-flex justify-content-between">
     <div>Maneja tus <b>pedidos</b>y detalles personales</div>
   </div>
   <hr />
-   <div class="container">
+   <div class="container" style="padding-bottom: 500px;">
       {% for order in orders %}
       <div class="row g-3">
         <div class="col-12 bg-light p-3 d-flex justify-content-between">
@@ -48,16 +48,16 @@
           <div class="card mb-3 border-0">
             <div class="row g-0">
               <div class="col-md-2 d-none d-md-block">
-              {% for image in item.product.product_imagen.all %}
-              {% if image.is_feature %}
-              <img class="img-fluid" alt="Responsive image" src="{{ image.imagen.url }}" alt="{{ image.imagen.alt_text }}">
-              {% endif %}
+              {% for image in item.product.product_image.all %}
+                {% if image.is_feature %}
+                  <img class="img-fluid" alt="Responsive image" src="{{ image.image.url }}" alt="{{ image.image.alt_text }}">
+                {% endif %}
               {% endfor %}
               </div>
               <div class="col-md-10">
                 <div class="card-body p-3">
                   <a class="text-decoration-none" href="{{ item.product.get_absolute_url }}">
-                    <p class="card-text small">{{item.product|title}}</p>
+                    <p class="card-text small">{{ item.product|title }}</p>
                   </a>
                 </div>
               </div>

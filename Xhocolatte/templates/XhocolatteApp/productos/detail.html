@@ -7,16 +7,20 @@
     <div class="container">
         <div class="row g-3 mb-5 mt-5">
             <div class="col-md-5  col-lg-5 order-md-first bg-light">
-                <img src="{{ producto.imagen.url }}" alt="Imagen Responsive" class="img-fluid mx-auto d-block">
+                {% for image in product.product_image.all %}
+                    {% if image.is_feature %}
+                <img src="{{ image.image.url }}" alt="{{ image.image.alt_text }}" alt="Imagen Responsive" class="img-fluid mx-auto d-block">
+                    {% endif %}
+                {% endfor %}
             </div>
             <div class="col-md7 col-lg-7 ps-md-3 ps-lg-5">
-                <h1 class="mb-3 h4">{{ producto.nombre }}</h1>
-                <p>{{ producto.alergenos|slice:":355" }}...</p>
+                <h1 class="mb-3 h4">{{ product.title }}</h1>
+
                 <div class="border">
                     <div class="col border-bottom">
                         <div class="row p-3">
                             <div class="col-6">Precio: </div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">{{ producto.precio }}€</span></div>
+                            <div class="col-6 text-end"><span class="h4 fw-bold">{{ product.regular_price }}€</span></div>
                         </div>
                     </div>
                     <div class="col">
@@ -31,8 +35,8 @@
                                 </select>
                             </div>
                             <div class="col-6 text-end">
-                                <button type="button" id="add-button" value="{{ producto.id }}" class="btn btn-success btn-sm">Añadir al Carrito</button>
-                                <button type="button" id="add-button" value="{{ producto.id }}" class="btn btn-secondary btn-sm">Añadir a Favoritos</button>
+                                <button type="button" id="add-button" value="{{ product.id }}" class="btn btn-success btn-sm">Añadir al Carrito</button>
+                                <button type="button" value="{{ product.id }}" class="btn btn-secondary btn-sm">Añadir a Favoritos</button>
                             </div>
                         </div>
                     </div>

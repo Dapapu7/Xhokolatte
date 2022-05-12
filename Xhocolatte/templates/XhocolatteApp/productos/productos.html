@@ -9,29 +9,40 @@
 
         <div class="pb-3 h2">Productos</div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        
 
-        {% for producto in productos %}
+        {% if not products %}
+            <div class="col-12">Todavía no hay productos</div>
+        {% else %}
 
-            <div class="col">
-                <div class="card shadow-sm">
-                    <a href="{{ producto.get_absolute_url }}">
-                        <img src="{{ producto.imagen.url }}" alt="Imagen Responsive" class="img-fluid"/>
-                    </a>
-                    <div class="card-body">
-                        <p class="card-text">
-                            <a href="{{ producto.get_absolute_url }}" class="text-dark text-decoration-none h5">{{ producto.nombre }}</a>
-                        </p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">{{ producto.descripcion }}</small>
+            {% for product in products %}
+
+                <div class="col">
+                    <div class="card shadow-sm">
+
+                        {% for image in product.product_image.all %}
+                            {% if image.is_feature %}
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ image.image.url }}" alt="{{ image.image.alt_text }}" alt="Imagen Responsive" class="img-fluid"/>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+
+                        <div class="card-body">
+                            <p class="card-text">
+                                <a href="{{ product.get_absolute_url }}" class="text-dark text-decoration-none h5">{{ product.title }}</a>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ product.description }}</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {% endfor %}
+                {% endfor %}
 
         </div>
+
+        {% endif %}
     </div>
 </div>
 

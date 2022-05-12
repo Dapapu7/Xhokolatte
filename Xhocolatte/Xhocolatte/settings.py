@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'froala_editor',
     'django_countries',
+    'mptt',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'

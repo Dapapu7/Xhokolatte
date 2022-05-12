@@ -1,238 +1,122 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 
-class ProductManager(models.Manager):
-    def get_queryset(self):
-        return super(ProductManager, self).get_queryset().filter(estado=True)
-# Create your models here.
-class Cliente(models.Model):
-    id = models.AutoField(primary_key = True)
-    nombre = models.CharField('Nombre del Cliente', max_length = 50, null = False, blank = False)
-    apellido1 = models.CharField('Primer apellido del Cliente', max_length = 30, null = False, blank = False)
-    apellido2 = models.CharField('Segundo apellido del Cliente', max_length = 30, null = True, blank = True)
-    email = models.EmailField('Gmail', blank = False, null = False)
-    direccion = models.CharField('Dirección', max_length = 255, null = False, blank = False)
-    telefono = models.CharField('Teléfono', max_length = 9, blank = False, null = False)
-    cod_postal = models.CharField('Código Postal', max_length = 5, null = False, blank = False)
-    estado = models.BooleanField('Cliente Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+class ProductType(models.Model):
+    name = models.CharField(verbose_name=_("Product Name"), help_text=_("Required"), max_length=255, unique=True)
+    is_active = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Cliente'
-        verbose_name_plural = 'Clientes'
-
-    def __str__(self):
-        return "{0},{1}".format(self.apellido1, self.nombre)
-
-
-class Pago(models.Model):
-    id = models.AutoField(primary_key = True)
-    titular = models.CharField('Titular de la Tarjeta', max_length = 255, blank = False, null = False)
-    numeroTarjeta = models.CharField('Número de la Tarjeta', max_length = 16, blank = False, null = False)
-    ccv = models.CharField('CCV', max_length = 3, blank = False, null = False)
-    caducidad_tarjeta = models.DateField('Caducidad', null = False, blank = False)
-    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
-    estado = models.BooleanField('Pago Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Pago'
-        verbose_name_plural = 'Pagos'
-
-    def __str__(self):
-        return self.numeroTarjeta
-
-
-class Empleado(models.Model):
-    id = models.AutoField(primary_key = True)
-    dni = models.CharField('DNI', max_length = 9, null = False, blank = False)
-    nombre = models.CharField('Nombre del Cliente', max_length = 50, null = False, blank = False)
-    apellido1 = models.CharField('Primer apellido del Cliente', max_length = 30, null = False, blank = False)
-    apellido2 = models.CharField('Segundo apellido del Cliente', max_length = 30, null = True, blank = True)
-    email = models.EmailField('Gmail', blank = False, null = False)
-    direccion = models.CharField('Dirección', max_length = 255, null = False, blank = False)
-    telefono = models.CharField('Teléfono', max_length = 9, blank = False, null = False)
-    estado = models.BooleanField('Empleado Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Empleado'
-        verbose_name_plural = 'Empleados'
-
-    def __str__(self):
-        return "{0},{1}".format(self.apellido1, self.nombre)
-
-
-class Funcion(models.Model):
-    id = models.AutoField(primary_key = True)
-    cargo = models.CharField('Cargo', max_length = 100, blank = False, null = False)
-    empleado = models.ForeignKey(Empleado, on_delete = models.CASCADE)
-    estado = models.BooleanField('Cargo Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Funcion'
-        verbose_name_plural = 'Funciones'
-
-    def __str__(self):
-        return self.cargo
-
-
-class Encargo(models.Model):
-    id = models.AutoField(primary_key = True)
-    fechaEncargo = models.DateTimeField('Fecha de Encargo', blank = False, null = False)
-    fechaEntrega = models.DateTimeField('Fecha de Entrega', blank = True, null = True)
-    recibido = models.BooleanField('Recibido', default = False)
-    cliente = models.ForeignKey(Cliente, on_delete = models.CASCADE)
-    empleado = models.ForeignKey(Empleado, on_delete = models.CASCADE)
-    estado = models.BooleanField('Encargo Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Encargo'
-        verbose_name_plural = 'Encargos'
-
-    def __str__(self):
-        return "{0},{1}".format(self.id, self.fechaEncargo)
-
-
-class Producto(models.Model):
-    id = models.AutoField(primary_key = True)
-    nombre = models.CharField('Nombre', max_length = 255, blank = False, null = False)
-    descripcion = models.TextField('Descripción', blank=False, null = False, default='Que rico esta esto')
-    alergenos = models.TextField('Alergenos', blank=False, null=False, default='Ninguno')
-    imagen = models.ImageField(null = True, blank = True, upload_to = 'productos')
-    existencias = models.IntegerField('Existencias', blank = False, null = False)
-    precio = models.FloatField('Precio', blank = False, null = False)
-    slug = models.SlugField(max_length=255)
-    en_stock = models.BooleanField(default=True)
-    estado = models.BooleanField('Producto Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-    objects = models.Manager()
-    products = ProductManager()
-
-    class Meta:
-        verbose_name = 'Producto'
-        verbose_name_plural = 'Productos'
-
-
-    def get_absolute_url(self):
-        return reverse('detalle_productos', args=[self.slug])
-
-    def __str__(self):
-        return self.descripcion
-
-
-class Produccion(models.Model):
-    id = models.AutoField(primary_key = True)
-    cantidad = models.IntegerField('Cantidad', blank = False, null = False)
-    costoProduccion = models.FloatField('Coste Producción', blank = False, null = False)
-    costesIndirectos = models.FloatField('Costes Indirectos', blank = False, null = False)
-    ganancias = models.FloatField('Ganancias', blank = False, null = False)
-    fecha = models.DateTimeField('Fecha', blank = False, null = False)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    estado = models.BooleanField('Producción Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Produccion'
-        verbose_name_plural = 'Producciones'
-
-    def __str__(self):
-        return "{0},{1},{2}".format(self.id, self.fecha, self.producto)
-
-class ProductoEncargo(models.Model):
-    id = models.AutoField(primary_key = True)
-    cantidad = models.IntegerField('Cantidad del Encargo', blank = False, null = False)
-    precio = models.FloatField('Precio', blank = False, null = False)
-    producto_id = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    encargo_id = models.ForeignKey(Encargo, on_delete = models.CASCADE)
-    estado = models.BooleanField('DetalleEncargo Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'detalleEncargo'
-        verbose_name_plural = 'detalleEncargos'
-
-    def __str__(self):
-        return self.id
-
-
-class Receta(models.Model):
-    id = models.AutoField(primary_key = True)
-    nombre = models.CharField('Nombre', max_length = 45, blank = False, null = False)
-    descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
-    producto = models.ForeignKey(Producto, on_delete = models.CASCADE)
-    estado = models.BooleanField('Receta Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Receta'
-        verbose_name_plural = 'Recetas'
-
-    def __str__(self):
-        return self.nombre
-
-
-class Inventario(models.Model):
-    id = models.AutoField(primary_key = True)
-    descripcion = models.CharField('Descripción', max_length = 255, blank = False, null = False)
-    unidad = models.CharField('Unidad', max_length = 45, blank = False, null = False)
-    precio = models.FloatField('Precio', blank = False, null = False)
-    cantidad = models.IntegerField('Cantidad', blank = False, null = False)
-    receta = models.ManyToManyField(Receta)
-    estado = models.BooleanField('Receta Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
-
-    class Meta:
-        verbose_name = 'Inventario'
-        verbose_name_plural = 'Inventarios'
-
-    def __str__(self):
-        return self.descripcion
-
-
-class InventarioReceta(models.Model):
-    id = models.AutoField(primary_key = True)
-    ingrediente = models.CharField('Ingredientes', max_length = 45, blank = False, null = False)
-    cantidad = models.CharField('Cantidad', max_length = 45, blank = False, null = False)
-    unidad_medida = models.CharField('Unidad de medida', max_length = 45, blank = False, null = False)
-    receta_id = models.ForeignKey(Receta, on_delete = models.CASCADE)
-    inventario_id = models.ForeignKey(Inventario, on_delete = models.CASCADE)
-
-    class Meta:
-        verbose_name = 'listaIngrediente'
-        verbose_name_plural = 'listaIngredientes'
-
-    def __str__(self):
-        return self.ingrediente
+        verbose_name = _("Product Type")
+        verbose_name_plural = _("Product Types")
 
     
-class Proveedor(models.Model):
-    id = models.AutoField(primary_key = True)
-    nombre = models.CharField('Nombre', max_length = 100, blank = False, null = False)
-    telefono = models.CharField('Teléfono', max_length = 9, blank = False, null = False)
-    inventario = models.ManyToManyField(Inventario)
-    estado = models.BooleanField('Receta Activo/No Activo', default = True)
-    fecha_creacion = models.DateField('Fecha de Creación', auto_now = False, auto_now_add = True)
+    def __str__(self):
+        return self.name
+
+
+class ProductSpecification(models.Model):
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    name = models.CharField(verbose_name=_("Name"), help_text=_("Required"), max_length=255)
 
     class Meta:
-        verbose_name = 'Proveedor'
-        verbose_name_plural = 'Proveedores'
+        verbose_name = _("Product Specification")
+        verbose_name_plural = _("Product Specifications")
+
 
     def __str__(self):
-        return "{0},{1}".format(self.nombre, self.telefono)
+        return self.name
 
 
-class ProveedoresInventario(models.Model):
-    id = models.AutoField(primary_key = True)
-    inventario_id = models.ForeignKey(Inventario, on_delete = models.CASCADE)
-    proveedor_id = models.ForeignKey(Proveedor, on_delete = models.CASCADE)
+class Product(models.Model):
+    product_type = models.ForeignKey(ProductType, on_delete=models.RESTRICT)
+    title = models.CharField(
+        verbose_name=_("Title"), 
+        help_text=_("Required"), 
+        max_length=255,
+    )
+    description = models.TextField(verbose_name=_("Description"), help_text=_("Required"), blank=True)
+    slug = models.SlugField(max_length=255)
+    regular_price = models.DecimalField(
+        verbose_name=_("Regular price"),
+        help_text=_("Maximum 999.99"),
+        error_messages={
+            "name": {
+                "max_length": _("The price must be between 0 and 999.99.")
+            },
+        },
+        max_digits=5,
+        decimal_places=2,
+    )
+    discount = models.DecimalField(
+        verbose_name=_("Discount price"),
+        help_text=_("Maximum 999.99"),
+        error_messages={
+            "name": {
+                "max_length": _("The price must be between 0 and 999.99.")
+            },
+        },
+        max_digits=5,
+        decimal_places=2,
+    )
+    is_active = models.BooleanField(
+        verbose_name=_("Product visibility"),
+        help_text=_("Change product visibility"),
+        default=True,
+    )
+    created_at = models.DateTimeField(_("Created at"), auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(_("Updated at"), auto_now=True)
 
     class Meta:
-        verbose_name = 'proveedorInventario'
-        verbose_name_plural = 'proveedoresInventario'
+        ordering = ("-created_at",)
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
+
+    def get_absolute_url(self):
+        return reverse("xhocolatte:detalle_productos", args=[self.slug])
 
     def __str__(self):
-        return "{0},{1},{2}".format(self.id, self.inventario_id, self.proveedor_id)
+        return self.title
+
+
+class ProductSpecificationValue(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="specification_value")
+    specification = models.ForeignKey(ProductSpecification, on_delete=models.RESTRICT)
+    value = models.CharField(
+        verbose_name=_("Value"),
+        help_text=_("Product specification value (maximum of 255 words)"),
+        max_length=255,
+    )
+
+    class Meta:
+        verbose_name = _("Product Specification Value")
+        verbose_name_plural = _("Product Specification Values")
+
+
+    def __str__(self):
+        return self.value
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_image")
+    image = models.ImageField(
+        verbose_name=_("Image"),
+        help_text = _("Upload a product image"),
+        upload_to = "images/",
+    )
+    alt_text = models.CharField(
+        verbose_name=_("Alternative text"),
+        help_text=_("Please add alternative text"),
+        max_length=255,
+        null=True,
+        blank=True,
+    )
+    is_feature = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = _("Product Image")
+        verbose_name_plural = _("Product Images")
+    
