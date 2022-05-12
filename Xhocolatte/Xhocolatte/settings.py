@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'XhocolatteApp',
     'basket',
     'account',
+    'checkout',
+    'orders',
 
     'crispy_forms',
     'crispy_bootstrap5',
@@ -109,12 +111,14 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 
+BASKET_SESSION_ID = "basket"
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'account.UserBase'
+AUTH_USER_MODEL = 'account.Customer'
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGOUT_REDIRECT_URL = '/account/login'
 

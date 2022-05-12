@@ -1,6 +1,9 @@
 from decimal import Decimal
 
+from django.conf import settings
+
 from XhocolatteApp.models import Producto
+from checkout.models import DeliveryOptions
 
 
 class Basket():
@@ -75,8 +78,37 @@ class Basket():
         """
         return sum(item['qty'] for item in self.basket.values()) 
 
+    def get_subtotal_price(self):
+        return sum(Decimal(item["precio"]) * item["qty"] for item in self.basket.values())
+
+    def get_delivery_price(self):
+        newprice = 0.00
+
+        if "purchase" in self.session:
+            newprice = DeliveryOptions.objects.get(id=self.session["purchase"]["delivery_id"]).delivery_price
+
+        return newprice
+
     def get_total_price(self):
-        return sum(Decimal(item['precio']) * item['qty'] for item in self.basket.values())
+        newprice = 0.00
+        subtotal = sum(Decimal(item["precio"]) * item["qty"] for item in self.basket.values())
+
+        if "purchase" in self.session:
+            newprice = DeliveryOptions.objects.get(id=self.session["purchase"]["delivery_id"]).delivery_price
+
+        total = subtotal + Decimal(newprice)
+        return total
+
+    def basket_update_delivery(self, deliveryprice=0):
+        subtotal = sum(Decimal(item["precio"]) * item["qty"] for item in self.basket.values())
+        total = subtotal + Decimal(deliveryprice)
+        return total
+
+    def clear(self):
+        del self.session["skey"]
+        del self.session["address"]
+        del self.session["purchase"]
+        self.save()
 
     def save(self):
         self.session.modified = True
