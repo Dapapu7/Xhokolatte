@@ -183,46 +183,6 @@ main .sobre-nosotros {
 
 
 
-/* Nuestros Clientes */
-.cards {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.cards .card {
-  background: rgb(93, 51, 3);
-  display: flex;
-  height: 200px;
-  align-items: center;
-  justify-content: space-evenly;
-  border-radius: 5px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
-}
-
-.cards .card img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border: 3px solid #fff;
-  border-radius: 50%;
-  display: block;
-}
-
-.cards .card > .texto-card {
-  width: 60%;
-  color: #fff; /*#875f27dc*/
-}
-
-.cards .card > .texto-card p {
-  font-weight: 300;
-  padding-top: 5px;
-}
-
-
-
-
-
-
 
 /* Nuestros Servicios */
 .nuestros-servicios {
@@ -252,4 +212,15 @@ main .sobre-nosotros {
 .servicio-indiv p {
   font-weight: 300;
   text-align: justify;
+}
+
+
+
+
+
+
+/* Contacto */
+
+.contacto-form{
+  
 }

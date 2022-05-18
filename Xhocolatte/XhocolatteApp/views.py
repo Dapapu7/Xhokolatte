@@ -35,9 +35,12 @@ def contactar(request):
     return render(request, "XhocolatteApp/contacto.html")
 
 
+<<<<<<< Updated upstream
 def blog(request):
     return render(request, 'XhocolatteApp/blog.html')
 
+=======
+>>>>>>> Stashed changes
 
     
 

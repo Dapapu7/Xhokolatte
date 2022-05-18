@@ -10,7 +10,7 @@
     
     <section class="textos-header">
         <h1>Boutique Pastelería Xhocolatte</h1>
-        <h2>Las mejores calidades, los mejores obradores.</h2>
+        <h2>Las mejores Calidades, los mejores Obradores.</h2>
     </section>
 
     
@@ -20,6 +20,7 @@
     </header>
 
 <main>
+
     <section class="contenedor-html sobre-nosotros">
         <h2 class="titulo-html">Nuestros Productos</h2>
             <div class="contenedor-sobre-nosotros">
@@ -36,6 +37,8 @@
                 </div>
             </div>
     </section>
+
+
     <section class="galeria-html">
         <div class="contenedor-html">
             <h2 class="titulo-html">Galería</h2>
@@ -99,28 +102,7 @@
             </div>
         </div>
     </section>
-    <section class="contenedor-clientes">
-        <h2 class="titulo-html titulo-clientes">Nuestros clientes</h2>
-        <div class="cards">
 
-            <div class="card">
-                <img src="{% static 'img/fotos-fondo/Chocolates-fundiditos.jpg' %}" alt="">
-                <div class="texto-card">
-                    <h4>Name</h4>
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, rerum.</p>
-                </div>
-
-                <div class="card">
-                    <img src="{% static 'img/fotos-fondo/chocolatetorreblanca.jpg' %}" alt="">
-                    <div class="texto-card">
-                        <h4>Name</h4>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi, rerum.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     <section class="sobre-nosotros">
         <div class="contenedor-html">
@@ -146,6 +128,22 @@
                 </div>
             </div>
         </div>
+    </section>
+
+
+
+    <section class="contacto">
+        <h2 class="titulo-html titulo-contacto">Contacto</h2>
+        <h1>
+            <form action="/contactar/" method="POST" class="contacto-form">
+                {% csrf_token %}
+                <p>Asunto: <input type="text" name="txtAsunto"/></p>
+                <p>Email: <input type="email" name="txtEmail"/></p>
+                <p>Mensaje: <textarea name="txtMensaje" cols="30" rows = "5" style = "resize: none;"></textarea></p>
+    
+                <input type="submit" value="Enviar Correo">
+            </form>
+        </h1>
     </section>
 </main>
 </body>
