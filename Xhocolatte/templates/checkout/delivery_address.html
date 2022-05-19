@@ -5,7 +5,7 @@
 
 {% block content %} 
 
-<div class="container">
+<div class="container" style="padding-top: 100px;">
     <div class="col-12">
       <h1 class="h2">Dirección de Envío</h1>
     </div>
@@ -16,7 +16,7 @@
   </div>
   
   
-  <div class="container">
+  <div class="container" style="padding-bottom: 500px;">
     <div class="row g-3">
       {% if addresses|length == 0 %}
       <div class="col-12">No hay direcciones de envíos, <a href="{% url 'account:add_address' %}">añadir dirección</a></div>

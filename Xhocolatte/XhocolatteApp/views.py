@@ -21,26 +21,6 @@ def detalle_productos(request, slug):
     product = get_object_or_404(Product, slug=slug, is_active=True)
     return render(request, 'XhocolatteApp/productos/detail.html', {'product': product})
 
-def  contacto(request):
-    return render(request, 'XhocolatteApp/contacto.html')
-
-def contactar(request):
-    if request.method == "POST":
-        asunto = request.POST["txtAsunto"]
-        mensaje = request.POST["txtMensaje"] + " /Email: " + request.POST["txtEmail"]
-        email_desde = settings.EMAIL_HOST_USER
-        email_para = ["ogre811@gmail.com"]
-        send_mail(asunto, mensaje, email_desde, email_para, fail_silently = False)
-        return render(request, "XhocolatteApp/contactoExitoso.html")
-    return render(request, "XhocolatteApp/contacto.html")
-
-
-<<<<<<< Updated upstream
-def blog(request):
-    return render(request, 'XhocolatteApp/blog.html')
-
-=======
->>>>>>> Stashed changes
 
     
 

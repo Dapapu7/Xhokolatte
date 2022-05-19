@@ -2,11 +2,11 @@
 {% block title %}Edit Addresses{% endblock %}
 
 {% block sub_content %}
-    <div class="col-6 mx-auto">
+    <div class="col-6 mx-auto" style="padding-top: 100px;">
     <h1 class="h3">Crear/Editar Dirección</h1>
     <div>Añade una nueva <b>dirección</b> de envio y preferencias</div>
     <hr />
-    <form name="address_form" class="account-form" method="post" enctype="multipart/form-data">
+    <form name="address_form" style="padding-bottom: 500px;" class="account-form" method="post" enctype="multipart/form-data">
         {% if form.errors %}
         <div class="alert alert-primary" role="alert">
         Error: Porfavor inténtalo otra vez
