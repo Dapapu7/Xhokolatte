@@ -6,11 +6,11 @@
 {% block content %} 
 
 <div class="container" style="padding-top: 100px;">
-    <div class="col-12">
-      <h1 class="h2">Dirección de Envío</h1>
+    <div class="">
+      <h2 class="titulo-html">Dirección de Envío</h2>
     </div>
     <div class="col-12">
-      <p>Porfavor seleccione su dirección de envío</p>
+      <p>Por favor seleccione su dirección de envío, gracias</p>
     </div>
     <hr />
   </div>
@@ -19,7 +19,7 @@
   <div class="container" style="padding-bottom: 500px;">
     <div class="row g-3">
       {% if addresses|length == 0 %}
-      <div class="col-12">No hay direcciones de envíos, <a href="{% url 'account:add_address' %}">añadir dirección</a></div>
+      <div class="col-12">No hay direcciones de envíos, <a href="{% url 'account:add_address' %}">Añadir dirección</a></div>
       {% else %}
       <div class="col-md-4 col-lg-4 order-md-last p-0 order-3">
       
@@ -41,7 +41,7 @@
       <div class="col-md-7 col-lg-8">
         {% for address in addresses %}
         {% if not address.default %}
-          <h1 class="h5 pt-4">Otras direcciones</h1>
+          <h1 class="h5 pt-4">Direcciones</h1>
         {% endif %}
         <div class="card mb-3 border-1 rounded-0 product-item me-md-4" data-index="{{option.id}}">
           <div class="row g-0">

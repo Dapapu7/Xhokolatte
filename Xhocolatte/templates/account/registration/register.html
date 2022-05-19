@@ -13,8 +13,11 @@
         box-shadow: none;
     }
 </style>
+<div class="">
+    <h2 class="titulo-html" style="padding: 50px;">Regístrate</h2>
+  </div>
 
-<div class="container-fluid" style="padding-top: 100px;">
+<div class="container-fluid" style="padding-top: 50px;">
     <div class="row no-gutter">
         <div class="col-md-12">
             <div class="login d-flex align-items-center py-5">
@@ -27,7 +30,7 @@
                                 <p class="mb-4">Es gratis y te va a llevar un minuto.</p>
 
                                 {% if form.errors %}
-                                    <p>Please correct the following errors:</p>
+                                    <p>Por favor corrija los siguientes errores:</p>
                                 {% for field in form %}
                                 {% if field.errors %}
                                     <div class="alert alert-primary" role="alert">
@@ -46,13 +49,13 @@
                                 <label>{{ form.password.label}}<span class="text-muted mb-4">
                                         </span></label>
                                  <small class="form-text text-muted mb-4 small">
-                                    Por lo menos 8 caracteres y 1 dígito
+                                    Por lo menos 8 carácteres y 1 dígito
                                 </small>
                                 {{ form.password }}
                                 <label>{{ form.password2.label}}<span class="text-muted small">
                                         (Obligatorio)</span></label>
                                 {{ form.password2 }}
-                                <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">Registrar</button>
+                                <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">Registrarse</button>
                                 <p class="text-center">
                                     <a href="{% url "account:login" %}">¿Ya tienes una cuenta?</a>
                                 </p>

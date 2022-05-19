@@ -6,10 +6,10 @@
     <div>
         {% if 'email' in request.get_full_path %}
         <h3 class="mb-4">Password Reset Success</h3>
-        <p>Check your email for instructions</p>
+        <p>Comprueba tu e-mail para obtener instrucciones</p>
         {% endif%}
         {% if 'complete' in request.get_full_path %}
-        <h3 class="mb-4">Password Reset Success</h3>
+        <h3 class="mb-4">Reseteado de contraseña con éxito</h3>
         <a href="{% url "account:login" %}">Login</a>
         {% endif%}
     </div>

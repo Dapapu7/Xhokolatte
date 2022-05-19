@@ -34,7 +34,7 @@
                                     {% if user_form.is_valid %}
 
                                         <div class="alert alert-primary" role="alert">
-                                            ¡Detalles actualizados correctamente!
+                                            ¡Detalles actualizados corréctamente!
                                         </div>
                                         <p class="small text-center pt-0">
                                             <a href="{% url 'account:dashboard' %}">Vuelve a Dashboard</a>
@@ -63,7 +63,7 @@
                                 <form action="{% url 'account:delete_user' %}" class="account-form px-4" method="post">
                                     {% csrf_token%}
                                     <p class="h3 pt-4 font-weight-bold">Borrar Cuenta</p>
-                                    <p>¿Estás segur@ de que desea borrar permanentemente la cuenta?</p>
+                                    <p>¿Estás segur@ de que deseas borrar permanentemente la cuenta? :(</p>
                                     <button type="submit" role="button" class="btn btn-danger btn-block py-2 mb-4 mt-5 fw-bold w-100">Borrar</button>
                                 </form>
                             </div>
