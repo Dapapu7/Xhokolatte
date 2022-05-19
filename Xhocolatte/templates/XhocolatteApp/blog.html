@@ -7,35 +7,30 @@
 {% block content %}
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<section class="blog">
+<section class="blog" style="padding-bottom: 500px; padding-top: 100px;">
     <div class="cabecera-blog">
         <h3>Nuestros Últimos Posts:</h3>
     </div>
 
     {% for blog in blogs %}
-    <!--Blog 1-->
-    <div class="contenedor-blog" style="padding-bottom: 500px;">
-        <div class="box-blog">
-            <div class="img-blog">
-                <a href=""><img src="{{ blog.image.url }}" alt="Blog"></a>
-            </div>
+        <!--Blog 1-->
+        <div class="contenedor-blog">
+            <div class="box-blog">
+                <div class="img-blog">
+                    <a href=""><img src="{{ blog.image.url }}" alt="Blog"></a>
+                </div>
 
-            <div class="texto-blog">
-                
-                <span>{{blog.created_at}} / {{blog.title}}</span>
-                
-                <a href="#" class="titulo-blog">Las mejores calidades, los mejores artesanos.</a>
-                <p>{{blog.content|safe}}</p>
-                <a href="#">¿Quieres probar uno?</a>
+                <div class="texto-blog">
+                    
+                    <span>{{blog.created_at}} / {{blog.title}}</span>
+                    
+                    <a href="#" class="titulo-blog">Las mejores calidades, los mejores artesanos.</a>
+                    <p>{{blog.content|safe}}</p>
+                    <a href="#">¿Quieres probar uno?</a>
+                </div>
             </div>
         </div>
-    </div>
+    
     {% endfor %}
-
-
-
-
-
-     
 </section>
 {% endblock %}
