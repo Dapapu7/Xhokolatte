@@ -19,7 +19,6 @@ def basket_add(request):
         
         basketqty = basket.__len__()
         response = JsonResponse({'qty': basketqty})
-
         return response
 
 def basket_delete(request):

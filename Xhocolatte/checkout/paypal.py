@@ -1,4 +1,3 @@
-import sys
 from paypalcheckoutsdk.core import PayPalHttpClient, SandboxEnvironment
 
 class PayPalClient:

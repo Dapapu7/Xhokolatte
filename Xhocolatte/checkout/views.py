@@ -63,10 +63,6 @@ def payment_selection(request):
 
     return render(request, "checkout/payment_selection.html", {})
 
-# @login_required
-# def payment_complete(request):
-#     return render(request, "checkout/payment_complete.html")
-
 # PayPal
 
 from paypalcheckoutsdk.orders import OrdersGetRequest

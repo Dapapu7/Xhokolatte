@@ -13,20 +13,20 @@ class UserAddressForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["full_name"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Nombre Completo"}
         )
-        self.fields["phone"].widget.attrs.update({"class": "form-control mb-2 account-form", "placeholder": "Phone"})
+        self.fields["phone"].widget.attrs.update({"class": "form-control mb-2 account-form", "placeholder": "Teléfono"})
         self.fields["address_line"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Dirección 1"}
         )
         self.fields["address_line2"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Dirección 2"}
         )
         self.fields["town_city"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Ciudad"}
         )
         self.fields["postcode"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Código Postal"}
         )
             
 
@@ -34,11 +34,11 @@ class UserAddressForm(forms.ModelForm):
 class UserLoginForm(AuthenticationForm):
 
     username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'login-username'}))
+        attrs={'class': 'form-control mb-3', 'placeholder': 'Usuario', 'id': 'login-username'}))
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={
             'class': 'form-control',
-            'placeholder': 'Password',
+            'placeholder': 'Contraseña',
             'id': 'login-pwd',
         }
     ))
@@ -47,12 +47,12 @@ class UserLoginForm(AuthenticationForm):
 class RegistrationForm(forms.ModelForm):
 
     user_name = forms.CharField(
-        label='Enter Username', min_length=4, max_length=50, help_text='Required')
+        label='Introduze Usuario', min_length=4, max_length=50, help_text='Required')
     email = forms.EmailField(max_length=100, help_text='Required', error_messages={
-        'required': 'Sorry, you will need an email'})
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
+        'required': 'Lo siento, necesitas un email'})
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
     password2 = forms.CharField(
-        label='Repeat password', widget=forms.PasswordInput)
+        label='Repite contraseña', widget=forms.PasswordInput)
 
     class Meta:
         model = Customer
@@ -62,32 +62,32 @@ class RegistrationForm(forms.ModelForm):
         user_name = self.cleaned_data['user_name'].lower()
         r = Customer.objects.filter(user_name=user_name)
         if r.count():
-            raise forms.ValidationError("Username already exists")
+            raise forms.ValidationError("El usuario ya existe")
         return user_name
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Passwords do not match.')
+            raise forms.ValidationError('Las contraseñas no coinciden.')
         return cd['password2']
 
     def clean_email(self):
         email = self.cleaned_data['email']
         if Customer.objects.filter(email=email).exists():
             raise forms.ValidationError(
-                'Please use another Email, that is already taken')
+                'Porfavor usa otro email, ese ya está cogido')
         return email
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['user_name'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Username'})
+            {'class': 'form-control mb-3', 'placeholder': 'Usuario'})
         self.fields['email'].widget.attrs.update(
             {'class': 'form-control mb-3', 'placeholder': 'E-mail', 'name': 'email', 'id': 'id_email'})
         self.fields['password'].widget.attrs.update(
-            {'class': 'form-control mb-3', 'placeholder': 'Password'})
+            {'class': 'form-control mb-3', 'placeholder': 'Contraseña'})
         self.fields['password2'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'Repeat Password'})
+            {'class': 'form-control', 'placeholder': 'Repite Contraseña'})
 
 
 class PwdResetForm(PasswordResetForm):
@@ -100,32 +100,32 @@ class PwdResetForm(PasswordResetForm):
         u = Customer.objects.filter(email=email)
         if not u:
             raise forms.ValidationError(
-                'Unfortunatley we can not find that email address')
+                'Desafortunadamente no hemos encontrado la dirección de email')
         return email
 
 
 class PwdResetConfirmForm(SetPasswordForm):
     new_password1 = forms.CharField(
         label='New password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-newpass'}))
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Nueva Contraseña', 'id': 'form-newpass'}))
     new_password2 = forms.CharField(
         label='Repeat password', widget=forms.PasswordInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'New Password', 'id': 'form-new-pass2'}))
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Nueva Contraseña', 'id': 'form-new-pass2'}))
 
 
 class UserEditForm(forms.ModelForm):
 
     email = forms.EmailField(
-        label='Account email (can not be changed)', max_length=200, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}))
+        label='El email de la cuenta (no se puede cambiar)', max_length=200, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'E-mail', 'id': 'form-email', 'readonly': 'readonly'}))
 
     user_name = forms.CharField(
-        label='Firstname', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-firstname', 'readonly': 'readonly'}))
+        label='Usuario', min_length=4, max_length=50, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Usuario', 'id': 'form-firstname', 'readonly': 'readonly'}))
 
     first_name = forms.CharField(
-        label='Username', min_length=4, max_length=50, widget=forms.TextInput(
-            attrs={'class': 'form-control mb-3', 'placeholder': 'Firstname', 'id': 'form-lastname'}))
+        label='Nombre', min_length=4, max_length=50, widget=forms.TextInput(
+            attrs={'class': 'form-control mb-3', 'placeholder': 'Nombre', 'id': 'form-lastname'}))
 
     class Meta:
         model = Customer

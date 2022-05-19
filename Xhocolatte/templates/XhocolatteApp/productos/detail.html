@@ -5,6 +5,13 @@
 {% block content %}
 
     <div class="container">
+        {% if messages %}
+            <div style="margin-top: 50px;" class="alert alert-warning" alert-{{ message.tags }}" role="alert">
+        {% for message in messages  %}
+            {{message|safe}} - <a href="{% url "account:wishlist" %}" class="alert-link">Sus Favoritos</a>.
+        {% endfor %}
+            </div>
+        {% endif %}
         <div class="row g-3 mb-5 mt-5">
             <div class="col-md-5  col-lg-5 order-md-first bg-light">
                 {% for image in product.product_image.all %}
@@ -36,7 +43,7 @@
                             </div>
                             <div class="col-6 text-end">
                                 <button type="button" id="add-button" value="{{ product.id }}" class="btn btn-success btn-sm">Añadir al Carrito</button>
-                                <button type="button" value="{{ product.id }}" class="btn btn-secondary btn-sm">Añadir a Favoritos</button>
+                                <a href="{% url 'account:user_wishlist' product.id  %}" class="btn btn-light fw500" role="button" aria-disabled="true">Añadir a lista de Favoritos</a>
                             </div>
                         </div>
                     </div>

@@ -2,11 +2,13 @@ from django.urls import reverse
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from XhocolatteApp.models import Product
+from django.contrib import messages
 
 from orders.models import Order
 
@@ -19,7 +21,8 @@ from .tokens import account_activation_token
 
 @login_required
 def dashboard(request):
-    return render(request, 'account/dashboard/dashboard.html')
+    orders = user_orders(request)
+    return render(request, 'account/dashboard/dashboard.html', {"section": "profile", "orders": orders})
 
 @login_required
 def edit_details(request):
@@ -35,14 +38,13 @@ def edit_details(request):
 
 @login_required
 def delete_user(request):
-    user = Customer.objects.get(name=request.user)
+    user = Customer.objects.get(email=request.user)
     user.is_active = False
     user.save()
     logout(request)
     return redirect('account:delete_confirmation')
 
 def account_register(request):
-
     if request.user.is_authenticated:
         return redirect('account:dashboard')
 
@@ -63,7 +65,7 @@ def account_register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject=subject, message=message)
-            return HttpResponse('registered succesfully and activation sent')
+            return render(request, "account/registration/register_email_confirm.html", {"form": registerForm})
     else:
         registerForm = RegistrationForm()
     return render(request, 'account/registration/register.html', {'form': registerForm})
@@ -137,3 +139,21 @@ def user_orders(request):
     user_id = request.user.id
     orders = Order.objects.filter(user_id=user_id).filter(billing_status=True)
     return render(request, "account/dashboard/user_orders.html", {"orders":orders})
+
+
+@login_required
+def add_to_wishlist(request, id):
+    product = get_object_or_404(Product, id=id)
+    if product.users_wishlist.filter(id=request.user.id).exists():
+        product.users_wishlist.remove(request.user)
+        messages.success(request, product.title + " se ha borrado de su lista de Favoritos")
+    else:
+        product.users_wishlist.add(request.user)
+        messages.success(request, "Añadido " + product.title + " a su lista de Favoritos")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+@login_required
+def wishlist(request):
+    products = Product.objects.filter(users_wishlist=request.user)
+
+    return render(request, "account/dashboard/user_wish_list.html", {"wishlist": products})
