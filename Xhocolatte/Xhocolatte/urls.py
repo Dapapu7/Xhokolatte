@@ -10,10 +10,6 @@ urlpatterns = [
     path('carrito/', include('basket.urls', namespace='basket')),
     path('accounts/', include('account.urls', namespace='account')),
     path('checkout/', include('checkout.urls', namespace='checkout')),
-<<<<<<< Updated upstream
     path('orders/', include('orders.urls', namespace='orders')),
-=======
-    path('orders/', include('checkout.urls', namespace='orders')),
->>>>>>> Stashed changes
     path('', include('django.contrib.auth.urls')),
 ]

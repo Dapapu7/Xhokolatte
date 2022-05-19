@@ -27,12 +27,10 @@
                 <img src="{% static 'img/fotos-pasteleria/plumcakeSi.jpg' %}" alt="" class="img-sobre-nosotros">
                 <div class="contenido-textos">
                     <h3><span>1</span>Los Mejores Productos</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Quidem beatae eum sint dolor corrupti doloribus nam cupiditate debitis ut aliquam.
+                        <p>Traídos directamente de las mejores fábricas y con los mejores cuidados para que lleguen perfectamente al consumidor.
                         </p>
-                    <h3><span>2</span>Productos de Oferta</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Quidem beatae eum sint dolor corrupti doloribus nam cupiditate debitis ut aliquam.
+                    <h3><span>2</span>Los Mejores Artesanos</h3>
+                        <p>En nuestras manos tenemos Artesanos cualificados y dotados para la elaboración de las mejores calidades de productos que se pueden ver.
                         </p>
                 </div>
             </div>
@@ -110,41 +108,20 @@
             <div class="servicio-cont">
                 <div class="servicio-indiv">
                     <img src="{% static 'img/fotos-pasteleria/do-caramelo.jpg' %}" alt="">
-                    <h3>Nombre</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quia, dolorum libero enim magni laborum tempore! Fuga officiis voluptatum aliquam eum pariatur perferendis ipsa facere?
+                    <h3>Envío 36 horas</h3>
+                    <p>Para garantizar la calidad e integridad de nuestros productos, tenemos la opción de un envío sólo en 36h para aquellos que quieran probarlo ¡YA!
                     </p>
                 </div>
                 <div class="servicio-indiv">
                     <img src="{% static 'img/fotos-pasteleria/do-fresa.jpg' %}" alt="">
-                    <h3>Nombre</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quia, dolorum libero enim magni laborum tempore! Fuga officiis voluptatum aliquam eum pariatur perferendis ipsa facere?
-                    </p>
-                </div>
-                <div class="servicio-indiv">
-                    <img src="{% static 'img/fotos-pasteleria/donut-chocolate.jpg' %}" alt="">
-                    <h3>Nombre</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla quia, dolorum libero enim magni laborum tempore! Fuga officiis voluptatum aliquam eum pariatur perferendis ipsa facere?
+                    <h3>Envío Estándar</h3>
+                    <p>En ésta opción de envío el tiempo reglamentario de envío será de 5 días laborables. Para certificar que los productos llegarán en perfectas condiciones. ¡Pide Ya!
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-
-
-    <section class="contacto">
-        <h2 class="titulo-html titulo-contacto">Contacto</h2>
-        <h1>
-            <form action="/contactar/" method="POST" class="contacto-form">
-                {% csrf_token %}
-                <p>Asunto: <input type="text" name="txtAsunto"/></p>
-                <p>Email: <input type="email" name="txtEmail"/></p>
-                <p>Mensaje: <textarea name="txtMensaje" cols="30" rows = "5" style = "resize: none;"></textarea></p>
-    
-                <input type="submit" value="Enviar Correo">
-            </form>
-        </h1>
-    </section>
 </main>
 </body>
 
